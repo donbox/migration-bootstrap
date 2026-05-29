@@ -5,9 +5,16 @@
 After clean macOS install, in Terminal.app:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/donbox/migration-bootstrap/main/step1-homebrew.sh | bash
-curl -fsSL https://raw.githubusercontent.com/donbox/migration-bootstrap/main/step2-claude-code.sh | bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/donbox/migration-bootstrap/main/step1-homebrew.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/donbox/migration-bootstrap/main/step2-claude-code.sh)"
 ```
+
+> **Why this form, not `curl ... | bash`?** Piping through bash
+> disconnects the script from your terminal — the Homebrew installer
+> can't read your sudo password and fails. The `bash -c "$(curl ...)"`
+> form keeps stdin attached to the terminal so sudo and other
+> interactive prompts work. Same pattern Homebrew uses for its own
+> install instructions.
 
 Step 2 ends with Claude Code launched and the provision prompt on your
 clipboard. Sign in to Claude Code, open a new conversation, and **Cmd+V**.

@@ -36,9 +36,12 @@ PRODUCES
   - Claude Code launched and waiting for sign-in.
 
 USAGE
-  curl -fsSL https://raw.githubusercontent.com/donbox/migration-bootstrap/main/step2-claude-code.sh | bash
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/donbox/migration-bootstrap/main/step2-claude-code.sh)"
   # or, after fetching locally:
   bash step2-claude-code.sh
+
+  DO NOT use `curl ... | bash`. Piping disconnects stdin from the
+  terminal, and gh auth login can't complete the interactive flow.
 
 NEXT
   1. Sign in to Claude Code with your Anthropic account (one-time).
@@ -73,7 +76,7 @@ if ! command -v brew >/dev/null 2>&1; then
   else
     echo "✗ Homebrew not found. Run step 1 first:"
     echo
-    echo "  curl -fsSL https://raw.githubusercontent.com/donbox/migration-bootstrap/main/step1-homebrew.sh | bash"
+    echo '  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/donbox/migration-bootstrap/main/step1-homebrew.sh)"'
     exit 1
   fi
 fi

@@ -27,9 +27,13 @@ PRODUCES
   - `brew` command available in this shell and all future ones.
 
 USAGE
-  curl -fsSL https://raw.githubusercontent.com/donbox/migration-bootstrap/main/step1-homebrew.sh | bash
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/donbox/migration-bootstrap/main/step1-homebrew.sh)"
   # or, after fetching locally:
   bash step1-homebrew.sh
+
+  DO NOT use `curl ... | bash`. Piping disconnects stdin from the
+  terminal, and the Homebrew installer fails when sudo can't read
+  your password.
 
 NEXT
   Run step2-claude-code.sh to install Claude Code, authenticate with
@@ -94,5 +98,5 @@ echo "WHAT'S NEXT"
 echo "  Run step 2 to install Claude Code, authenticate with GitHub,"
 echo "  and clone the private how-I-work repo. Copy and paste:"
 echo
-echo "    curl -fsSL https://raw.githubusercontent.com/donbox/migration-bootstrap/main/step2-claude-code.sh | bash"
+echo '    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/donbox/migration-bootstrap/main/step2-claude-code.sh)"'
 echo "=========================================="
